@@ -1,16 +1,17 @@
 /**
  * Created by mdmytiaha on 05-Mar-15.
  */
+
 object ObjectTest extends App{
   def sort(xs: Array[Int]) {
     def swap(i: Int, j: Int) {
-      val t = xs(i);
-      xs(i) = xs(j);
+      val t = xs(i)
+      xs(i) = xs(j)
       xs(j) = t
     }
     def sort1(l: Int, r: Int) {
       val pivot = xs((l + r) / 2)
-      var i = l;
+      var i = l
       var j = r
       while (i <= j) {
         while (xs(i) < pivot) i += 1
@@ -33,8 +34,8 @@ object ObjectTest extends App{
       val pivot = xs(xs.length / 2)
       Array.concat(
         sortFun(xs filter (pivot >)),
-        xs filter (pivot ==),
-        sortFun(xs filter (pivot <)))
+        //xs filter (pivot ==),
+        sortFun(xs filter (pivot <=)))
     }
   }
   val arr = Array(8,5,4,9)
