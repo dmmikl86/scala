@@ -24,7 +24,7 @@ object Lists {
 
   def sum(xs: List[Int]): Int = {
     def sumTail(sum: Int, l: List[Int]): Int = {
-      if (xs.length == 0) sum else sumTail(sum + l.head, l.tail)
+      if (xs.isEmpty) sum else sumTail(sum + l.head, l.tail)
     }
     sumTail(0, xs)
   }
