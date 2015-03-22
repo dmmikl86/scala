@@ -24,7 +24,7 @@ object Lists {
 
   def sum(xs: List[Int]): Int = {
     def sumTail(sum: Int, l: List[Int]): Int = {
-      if (l.size == 0) sum else sumTail(sum + l.head, l.tail)
+      if (l.isEmpty) sum else sumTail(sum + l.head, l.tail)
     }
     sumTail(0, xs)
   }
@@ -42,5 +42,15 @@ object Lists {
    * @return The largest element in `xs`
    * @throws java.util.NoSuchElementException if `xs` is an empty list
    */
-  def max(xs: List[Int]): Int = ???
+  def max(xs: List[Int]): Int = {
+    var max:Int = Int.MinValue
+    def maxTail(l: List[Int]): Int = {
+      if (l.isEmpty) max else {
+        if(l.head > max)
+          max = l.head
+        maxTail(l.tail)
+      }
+    }
+    maxTail(xs)
+  }
 }

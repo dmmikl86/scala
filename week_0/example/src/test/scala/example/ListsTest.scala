@@ -7,4 +7,7 @@ class ListsTest extends FunSuite {
     val list: List[Int] = List(1, 2, 3, 4, 5, 6)
     assert(Lists.sum(list) == 21)
   }
+  test("find min value of List"){
+    assert(Lists.max(List(1, 2, 3, 4, 5, 6)) == 6)
+  }
 }
