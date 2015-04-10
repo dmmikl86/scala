@@ -140,4 +140,12 @@ class FunSetSuite extends FunSuite {
       assert(contains(f, 4), "Filter 2")
     }
   }
+
+  test("ForAll") {
+    new ExtensionTestSets {
+      val s = intersect(sTo10, sFrom5)
+      assert(forall(s, x => x < 20))
+      assert(forall(sTo10, x => x < 20))
+    }
+  }
 }
