@@ -3,13 +3,14 @@ package funsets
 import org.scalatest.FunSuite
 
 import org.junit.runner.RunWith
+import org.scalatest.FunSuite
 import org.scalatest.junit.JUnitRunner
 
 /**
  * This class is a test suite for the methods in object FunSets. To run
  * the test suite, you can either:
- *  - run the "test" command in the SBT console
- *  - right-click the file in eclipse and chose "Run As" - "JUnit Test"
+ * - run the "test" command in the SBT console
+ * - right-click the file in eclipse and chose "Run As" - "JUnit Test"
  */
 @RunWith(classOf[JUnitRunner])
 class FunSetSuite extends FunSuite {
@@ -21,9 +22,9 @@ class FunSetSuite extends FunSuite {
    * http://doc.scalatest.org/1.9.1/index.html#org.scalatest.FunSuite
    *
    * Operators
-   *  - test
-   *  - ignore
-   *  - pending
+   * - test
+   * - ignore
+   * - pending
    */
 
   /**
@@ -47,30 +48,30 @@ class FunSetSuite extends FunSuite {
     assert(1 + 2 === 3)
   }
 
-  
-  import FunSets._
+
+  import funsets.FunSets._
 
   test("contains is implemented") {
     assert(contains(x => true, 100))
   }
-  
+
   /**
    * When writing tests, one would often like to re-use certain values for multiple
    * tests. For instance, we would like to create an Int-set and have multiple test
    * about it.
-   * 
+   *
    * Instead of copy-pasting the code for creating the set into every test, we can
    * store it in the test class using a val:
-   * 
-   *   val s1 = singletonSet(1)
-   * 
+   *
+   * val s1 = singletonSet(1)
+   *
    * However, what happens if the method "singletonSet" has a bug and crashes? Then
    * the test methods are not even executed, because creating an instance of the
    * test class fails!
-   * 
+   *
    * Therefore, we put the shared values into a separate trait (traits are like
    * abstract classes), and create an instance inside each test method.
-   * 
+   *
    */
 
   trait TestSets {
@@ -82,12 +83,12 @@ class FunSetSuite extends FunSuite {
   /**
    * This test is currently disabled (by using "ignore") because the method
    * "singletonSet" is not yet implemented and the test would fail.
-   * 
+   *
    * Once you finish your implementation of "singletonSet", exchange the
    * function "ignore" by "test".
    */
   test("singletonSet(1) contains 1") {
-    
+
     /**
      * We create a new instance of the "TestSets" trait, this gives us access
      * to the values "s1" to "s3". 
@@ -107,6 +108,36 @@ class FunSetSuite extends FunSuite {
       assert(contains(s, 1), "Union 1")
       assert(contains(s, 2), "Union 2")
       assert(!contains(s, 3), "Union 3")
+    }
+  }
+
+  trait ExtensionTestSets {
+    val sTo10: Set = x => x <= 10
+    val sFrom5: Set = x => x >= 5
+  }
+
+  test("intersect") {
+    new ExtensionTestSets {
+      val s = intersect(sTo10, sFrom5)
+      assert(contains(s, 6), "Intersect1")
+      assert(!contains(s, 4), "Intersect2")
+    }
+  }
+
+  test("Difference") {
+    new ExtensionTestSets {
+      val dif = diff(sFrom5, sTo10)
+      assert(contains(dif, 1), "Difference 1")
+      assert(contains(dif, 12), "Difference 2")
+      assert(!contains(dif, 6), "Difference 3")
+    }
+  }
+
+  test("Filter") {
+    new ExtensionTestSets {
+      val f = filter(sTo10, (x: Int) => x % 2 == 0)
+      assert(!contains(f, 3), "Filter 1")
+      assert(contains(f, 4), "Filter 2")
     }
   }
 }
