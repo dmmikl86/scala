@@ -148,4 +148,11 @@ class FunSetSuite extends FunSuite {
       assert(forall(sTo10, x => x < 20))
     }
   }
+  test("Exists") {
+    new ExtensionTestSets {
+      val s = intersect(sFrom5, sTo10)
+      assert(exists(s, x => x < 20))
+      assert(exists(s, x => x == 5))
+    }
+  }
 }
