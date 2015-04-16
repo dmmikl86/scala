@@ -155,4 +155,14 @@ class FunSetSuite extends FunSuite {
       assert(exists(s, x => x == 5))
     }
   }
+
+  test("map for [-2, 2] mult by 10") {
+    def set(x: Int) = x >= -2 && x <= 2
+    val result = map(set, x => x * 10)
+    assert(contains(result, -20))
+    assert(contains(result, -10))
+    assert(contains(result, 0))
+    assert(!contains(result, -2))
+    assert(!contains(result, -1))
+  }
 }
