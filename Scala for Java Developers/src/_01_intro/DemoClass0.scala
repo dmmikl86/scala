@@ -8,7 +8,6 @@ object DemoClass0 extends App {
   person0.age
   person0.age = 5
   person0.age_=(4)
-  person0.age_$eq(45)
 
   val person1 = new Person1
   person1.getAge()
