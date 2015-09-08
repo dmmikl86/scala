@@ -1,13 +1,8 @@
 package exersises
 
-object problem01 extends App {
+import exersises.math.MathUtil._
 
-  def isMultiples3or5(value: Int): Boolean = {
-    if (value % 3 == 0 || value % 5 == 0)
-      return true
-    else
-      return false
-  }
+object _001_Multiples_of__and_5 extends App {
 
   def sumOfMultiples(n: Int, result: Int = 0): Int = {
     if (n == 0)
