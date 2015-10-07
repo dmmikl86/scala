@@ -1,6 +1,6 @@
 package _02_oop
 
-class DemoOOP3 {
+class DemoOOP3{
   val x:Int = I(1).k
 
   val y:Int =  +I(2)
